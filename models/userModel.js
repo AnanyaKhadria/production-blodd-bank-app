@@ -50,7 +50,7 @@ const userSchema = new mongoose.Schema({
         required:[true,"Address is required"],
      },
      phone:{
-        type:String,
+        type:Number,
         required:[true,"Contact Detail is required"],
      },
 
