@@ -1,5 +1,9 @@
 import mongoose from 'mongoose';
+const phoneNumberRegex = /^05\d{8}$/;  // Like 0526665656
 
+const validatePhoneNumber = (phoneNumber) => {
+  return phoneNumberRegex.test(phoneNumber);
+};
 const userSchema = new mongoose.Schema({
      role:{
         type:String,
@@ -50,8 +54,14 @@ const userSchema = new mongoose.Schema({
         required:[true,"Address is required"],
      },
      phone:{
-        type:Number,
-        required:[true,"Contact Detail is required"],
+       type: String,  // Use String for phone number since it's alphanumeric
+    unique: [true, "Phone number is already in use."],
+    validate: {
+      validator: validatePhoneNumber,
+      message: "Invalid phone number.",
+    },
+    required: [true, "Contact Detail is required"],
+    default: "",
      },
 
 })
