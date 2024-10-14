@@ -96,9 +96,9 @@ export async function getInventoryController(req,res){
     try {
         console.log(req.body.userId);
         const inventory = await inventoryModel.find({organisation:req.body.userId}).populate("donar").populate("hospital").sort({createdAt:-1});
-        res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
+       /* res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
         res.setHeader('Pragma', 'no-cache');
-        res.setHeader('Expires', '0');
+        res.setHeader('Expires', '0');*/
         res.status(200).json({
             message:"got all records successfully",
             success:true,
